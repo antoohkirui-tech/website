@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My First Website</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; color: #333; margin: 0; padding: 0; text-align: center; }
-    header { background: #0073e6; color: white; padding: 40px 0; }
-    main section { padding: 20px; }
-    footer { background: #222; color: #aaa; padding: 20px 0; margin-top: 30px; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0073e6;
+      color: white;
+      padding: 40px 0;
+    }
+    main section {
+      padding: 20px;
+    }
+    footer {
+      background: #222;
+      color: #aaa;
+      padding: 20px 0;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Welcome to My Website</h1>
-    <p>Sharing great content and ideas with the world! Support me by donating below:</p>
+    <p>Thank you for visiting! You can support me by making a donation below:</p>
   </header>
 
   <main>
@@ -40,10 +58,17 @@
 
   <!-- PayPal SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAAK3c_QtF-lf18Guwf2yo59ECMJJELe40_Wcwsgvh0AoffxX2QVVXi5ZlM34vFPGseSGzx6e8Kcs-qQZw&currency=USD"></script>
+
+  <!-- PayPal Button Initialization -->
   <script>
     window.onload = function() {
       paypal.Buttons({
-        style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'paypal' },
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal'
+        },
         createOrder: function(data, actions) {
           var amount = prompt("Enter the amount you want to donate (USD):");
           if (!amount || isNaN(amount) || Number(amount) <= 0) {
@@ -51,7 +76,10 @@
             return;
           }
           return actions.order.create({
-            purchase_units: [{ amount: { value: amount }, description: "Support for my website" }]
+            purchase_units: [{
+              amount: { value: amount },
+              description: "Support for my website"
+            }]
           });
         },
         onApprove: function(data, actions) {
