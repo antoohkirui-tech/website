@@ -14,7 +14,7 @@
     <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=BAAK3c_QtF-lf18Guwf2yo59ECMJJELe40_Wcwsgvh0AoffxX2QVVXi5ZlM34vFPGseSGzx6e8Kcs-qQZw&currency=USD"></script>
 
-    <!-- Initialize PayPal Button -->
+    <!-- Initialize PayPal Button with flexible amount -->
     <script>
         paypal.Buttons({
             style: {
@@ -24,11 +24,14 @@
                 label: 'paypal'
             },
             createOrder: function(data, actions) {
+                var amount = prompt("Enter the amount you want to donate (USD):");
+                if (!amount || isNaN(amount) || Number(amount) <= 0) {
+                    alert("Invalid amount. Please enter a positive number.");
+                    return;
+                }
                 return actions.order.create({
                     purchase_units: [{
-                        amount: {
-                            value: '5.00' // Default donation amount (can be changed)
-                        },
+                        amount: { value: amount },
                         description: "Support for my website"
                     }]
                 });
